@@ -11,6 +11,7 @@ interface IBlog extends Document {
     Image?: string,
     Description?: string,
     Like?: string[],
+    Type?: string,
     Commentaire?: CommentProp[]
 }
 const BlogSchema = new Schema<IBlog>({
@@ -27,20 +28,23 @@ const BlogSchema = new Schema<IBlog>({
     Description: {
         type: String
     },
+    Type: {
+        type: String
+    },
     Like: {
         type: [String],
-        default:[]
+        default: []
     },
     Commentaire: [{
         userid: {
             type: Schema.Types.ObjectId,
-            unique:false,
+            unique: false,
             ref: 'users',
             required: true
         },
         body: {
             type: String,
-            default:''
+            default: ''
         },
     }]
 });

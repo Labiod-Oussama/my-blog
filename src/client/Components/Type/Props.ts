@@ -5,6 +5,7 @@ export type propsBlogs = {
     Image: string,
     Description?: string,
     Like: string[],
+    Type: string,
     Commentaire?: any[]
 }
 export interface AlertProps {

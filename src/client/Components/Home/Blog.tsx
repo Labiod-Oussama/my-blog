@@ -1,18 +1,13 @@
-import { useEffect, useState, useContext, forwardRef, useReducer } from 'react'
+import { useState, useContext, useReducer } from 'react'
 import { Box, Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, CardActions, Snackbar, Grow } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CommentIcon from '@mui/icons-material/Comment';
 import { infoGlobal } from '../../App';
 import { serverAddress } from '../Global/Config';
-// import MuiAlert from '@mui/material/Alert';
-import { propsBlogs, SnackbarProps, AlertProps, Action } from '../Type/Props';
+import { propsBlogs, AlertProps, Action } from '../Type/Props';
 import { useNavigate } from 'react-router-dom';
 import Alert from '../Global/Alerte';
-// const Alert = forwardRef(function Alert(props, ref) {
-//     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} sx={{ cursor: 'pointer' }} />;
-// });
-
 const Blog = (props: propsBlogs) => {
     const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal);
     const iduser = UserInfos?.user?._id;

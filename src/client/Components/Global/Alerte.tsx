@@ -4,7 +4,7 @@ import { Grow, Snackbar } from '@mui/material'
 import { AlertProps, SnackbarProps } from '../Type/Props';
 import { useNavigate } from 'react-router-dom';
 const Alert = forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} sx={{ cursor: 'pointer' }} />;
+    return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} sx={{cursor: 'pointer' }} />;
 });
 const Alerte = (props: AlertProps) => {
     const navigate = useNavigate();

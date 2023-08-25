@@ -106,7 +106,7 @@ function Header() {
                                     sx={{ ml: 1, cursor: 'pointer' }}
                                     onClick={() => setOpen(true)}
                                 />
-                                <Button variant='contained' sx={{ marginLeft: '15px', fontWeight: 'bold' }} color='secondary' onClick={handleLogOut}>
+                                <Button variant='contained' sx={{ marginLeft: '15px', fontWeight: 'bold', bgcolor: 'primary','&:hover': { bgcolor :'primary.main'} }} onClick={handleLogOut}>
                                     logout
                                 </Button>
                             </>
@@ -116,7 +116,7 @@ function Header() {
                     <Drawer />
                 </Toolbar>
 
-            </AppBar>
+            </AppBar >
             <DialogImg image={photoProfile} imageUploaded={setPhotoPfrofile} open={open} handleClickOpen={handleClickOpen} />
         </>
     )

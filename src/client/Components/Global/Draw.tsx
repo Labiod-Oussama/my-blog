@@ -20,12 +20,12 @@ function Draw() {
             >
                 <List>
                     <ListItemButton sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button variant='outlined' color='primary' startIcon={<LoginIcon />} sx={{ fontWeight: 'bold' }}>
+                        <Button variant='outlined' color='primary' href='/login' startIcon={<LoginIcon />} sx={{ fontWeight: 'bold' }}>
                             Log in
                         </Button>
                     </ListItemButton>
                     <ListItemButton sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button variant='contained' startIcon={<PersonAddAltIcon />} sx={{ bgcolor: 'primary.main','&:hover':{bgcolor:'primary.main'}, fontWeight: 'bold' }}>
+                        <Button variant='contained' href='/signup' startIcon={<PersonAddAltIcon />} sx={{ bgcolor: 'primary.main','&:hover':{bgcolor:'primary.main'}, fontWeight: 'bold' }}>
                             Sign up
                         </Button>
                     </ListItemButton>

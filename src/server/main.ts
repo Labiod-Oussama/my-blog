@@ -28,7 +28,7 @@ app.use(express.json())
 app.use(cookieParser());
 app.use(morgan('dev'));
 //db connection 
-const dburl = 'mongodb://localhost:27017/blogs';
+const dburl = 'mongodb+srv://OussamaLD:Oussamald2001@cluster0.j3aonwx.mongodb.net/blogs?retryWrites=true&w=majority';
 mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => ViteExpress.listen(app, 3000, () => {
     console.log("Server is listening on port 3000...");

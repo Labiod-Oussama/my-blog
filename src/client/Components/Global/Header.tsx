@@ -29,7 +29,7 @@ function Header() {
 
 
     const handleLogOut = () => {
-        fetch('http://localhost:3000/logout', {
+        fetch(`${serverAddress}/logout`, {
             method: 'get'
         }).then(() => { setInfos({ token: undefined, UserInfos: {} }); localStorage.removeItem('UserInfosBlog'); navigate('/login') })
             .catch(err => console.log(err))

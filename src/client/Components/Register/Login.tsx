@@ -23,7 +23,7 @@ const Login = () => {
         if (Email && Password) {
             setEmptyEmail(false)
             setEmptyPassword(false)
-            fetch('http://localhost:3000/login', {
+            fetch(`${serverAddress}/login`, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -9,6 +9,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { infoGlobal } from '../../App';
+import { serverAddress } from '../Global/Config';
 
 interface SignupFormValues {
     FirstName: string;
@@ -50,7 +51,7 @@ function Signup() {
     const navigate = useNavigate();
     const handleSubmit = async (values: SignupFormValues, { setSubmitting }: FormikValues) => {
         setSubmitting(false);
-        await axios.post('http://localhost:3000/signup', values)
+        await axios.post(`${serverAddress}/signup`, values)
             .then(res => res.data)
             .then(data => {
                 const { success, ...rest } = data

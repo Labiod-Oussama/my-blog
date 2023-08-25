@@ -8,7 +8,7 @@ async function authUser(req: Request, res: Response, next: NextFunction) {
         return next();
     }
     try {
-        const decodedToken = jwt.verify(token, 'Oussama LD');
+        const decodedToken = jwt.verify(token,process.env.JWT_SECRET);
         if (!decodedToken) {
             return res.status(401).json({message:'Unauthorized'})
         }

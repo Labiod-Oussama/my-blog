@@ -3,12 +3,12 @@ import ViteExpress from "vite-express";
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const path=require('path');
+const path = require('path');
 const app = express();
-
+require('dotenv').config()
 const RegisterRoutes = require('./Routes/register');
-const BlogRoutes=require('./Routes/blogs');
-const ProfileRoutes=require('./Routes/profile')
+const BlogRoutes = require('./Routes/blogs');
+const ProfileRoutes = require('./Routes/profile')
 //cors
 const cors = require('cors');
 const corsOpts = {
@@ -22,18 +22,18 @@ const corsOpts = {
     'Content-Type', 'Authorization'
   ],
 };
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors(corsOpts))
 app.use(express.json())
 app.use(cookieParser());
 app.use(morgan('dev'));
 //db connection 
-const dburl = 'mongodb+srv://OussamaLD:Oussamald2001@cluster0.j3aonwx.mongodb.net/blogs?retryWrites=true&w=majority';
-mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => ViteExpress.listen(app, 3000, () => {
     console.log("Server is listening on port 3000...");
-  }))
-  .catch((err: any) => console.log(err))
+  })).catch((err: any) => console.log(err))
+
+
 
 app.use(RegisterRoutes);
 app.use(BlogRoutes);

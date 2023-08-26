@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 //db connection 
 // const dburl = 'mongodb://localhost:27017/blogs';
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => app.listen(process.env.PORT, () => {
     console.log("Server is listening on port 3001...");
   }))

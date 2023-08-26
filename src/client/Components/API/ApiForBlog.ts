@@ -1,7 +1,7 @@
 import { serverAddress } from "../Global/Config"
 
 export const getAllBlogs = async () => {
-    const response = await fetch(`${serverAddress}/getBlogs`, {
+    const response = await fetch(`https://my-blogs-eqye.onrender.com/getBlogs`, {
         method: 'get'
     })
     const json = await response.json();

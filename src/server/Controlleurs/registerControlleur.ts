@@ -24,7 +24,7 @@ module.exports.login = async (req: Request, res: Response) => {
         const user = (req as any).user;
         const token = await user.generateAuthToken();
         res.cookie('token', token, {
-            maxAge: 1000 * 60 * 60 * 24, httpOnly: true, secure: true,sameSite:'lax'
+            maxAge: 1000 * 60 * 60 * 24, httpOnly: true, secure: true, sameSite: 'strict'
         });
         res.status(201).json({ success: true, user, token })
     }

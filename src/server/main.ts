@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 //db connection 
 // const dburl = 'mongodb://localhost:27017/blogs';
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => ViteExpress.listen(app, process.env.PORT, () => {
+  .then(() => app.listen(process.env.PORT, () => {
     console.log("Server is listening on port 3001...");
   }))
   .catch((err: any) => console.log(err))

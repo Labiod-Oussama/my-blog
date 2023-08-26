@@ -12,7 +12,7 @@ const ProfileRoutes = require('./Routes/profile')
 //cors
 const cors = require('cors');
 const corsOpts = {
-  origin: 'https://my-bloging.netlify.app/',
+  origin: '*',
   credentials: true,
 };
 app.use(express.static(path.join(__dirname, 'public')))

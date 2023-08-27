@@ -31,7 +31,9 @@ function Header() {
     const handleLogOut = () => {
         fetch(`${serverAddress}/logout`, {
             method: 'get'
-        }).then(() => { setInfos({ token: undefined, UserInfos: {} }); localStorage.removeItem('UserInfosBlog'); navigate('/login') })
+        }).then(() => {
+            setInfos({ token: undefined, UserInfos: {} }); localStorage.removeItem('UserInfosBlog'); document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; navigate('/login')
+        })
             .catch(err => console.log(err))
     }
     const [photoProfile, setPhotoPfrofile] = useState<string>(user)
@@ -106,7 +108,7 @@ function Header() {
                                     sx={{ ml: 1, cursor: 'pointer' }}
                                     onClick={() => setOpen(true)}
                                 />
-                                <Button variant='contained' sx={{ marginLeft: '15px', fontWeight: 'bold', bgcolor: 'primary','&:hover': { bgcolor :'primary.main'} }} onClick={handleLogOut}>
+                                <Button variant='contained' sx={{ marginLeft: '15px', fontWeight: 'bold', bgcolor: 'primary', '&:hover': { bgcolor: 'primary.main' } }} onClick={handleLogOut}>
                                     logout
                                 </Button>
                             </>

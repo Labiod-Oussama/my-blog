@@ -35,6 +35,7 @@ const Login = () => {
                     const { success, ...rest } = data
                     if (success) {
                         localStorage.setItem('UserInfosBlog', JSON.stringify({ ...rest }));
+                        document.cookie = `token=${rest.token}; expires=Tue, 19 Jan 2038 03:14:07 UTC; path=/`;
                         setInfos({ token: rest.token, UserInfos: JSON.parse(localStorage.getItem('UserInfosBlog') || '') });
                         fetch(`${serverAddress}/Dashboad`, {
                             method: 'GET'

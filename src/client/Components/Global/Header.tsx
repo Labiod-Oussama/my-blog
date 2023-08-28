@@ -45,7 +45,8 @@ function Header() {
     useEffect(() => {
         const getImg = async () => {
             const response = await fetch(`${serverAddress}/getImg`, {
-                method: 'get'
+                method: 'get',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             }).then(async (res) => {
                 if (!res.ok) {
                     setPhotoPfrofile(user)

@@ -13,10 +13,12 @@ import Alerte from '../Global/Alerte'
 import DialogEdit from './DialogEdit'
 import { infoGlobal } from '../../App'
 const Admin = () => {
+  const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal)
   const navigate = useNavigate()
   useEffect(() => {
     fetch(`${serverAddress}/Dashboad`, {
-      method: 'GET'
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
     }).then(res => res.json()).then(data => {
       const { admin } = data
       if (!admin) {
@@ -24,7 +26,6 @@ const Admin = () => {
       }
     })
   }, [])
-  const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal)
   const [Blogs, setBlogs] = useState<propsBlogs[]>([] as propsBlogs[]);
   useEffect(() => {
     const getBlogs = async () => {

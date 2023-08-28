@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import { TextField } from '@mui/material';
-import { AlertProps, valuesEdit } from '../Type/Props';
+import { AlertProps } from '../Type/Props';
 import { serverAddress } from '../Global/Config';
 import { useNavigate } from 'react-router-dom';
 import UploadIcon from '@mui/icons-material/Upload';
 import axios from 'axios';
 import Alerte from './Alerte';
+import { infoGlobal } from '../../App';
 
 const DialogImg = (props: {
     image: string,
@@ -17,6 +17,7 @@ const DialogImg = (props: {
     open: boolean,
     handleClickOpen: (e: boolean) => void;
 }) => {
+    const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal);
     const navigate = useNavigate()
     const [img, setImg] = useState<string>('');
     useEffect(() => {
@@ -41,6 +42,7 @@ const DialogImg = (props: {
         formData.append("file", a);
         fetch(`${serverAddress}/uploadImg`, {
             method: 'post',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: formData
         }).then(async (res) => {
             const { type, message } = await res.json();

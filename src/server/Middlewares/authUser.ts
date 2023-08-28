@@ -3,11 +3,10 @@ import User from "../Models/User";
 const jwt = require('jsonwebtoken')
 async function authUser(req: Request, res: Response, next: NextFunction) {
     const { token } = req.cookies;
-    if (!token) {
-        return res.status(403).send({ message: "you must log in" });
-        return next();
-    }
     try {
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.substring(7);
         const decodedToken = jwt.verify(token,process.env.JWT_SECRET);
         if (!decodedToken) {
             return res.status(401).json({message:'Unauthorized'})
@@ -19,9 +18,12 @@ async function authUser(req: Request, res: Response, next: NextFunction) {
              res.locals.role=user.Role;
            }
         }
-
         next()
-    } catch (error) {
+    }else{
+        return res.status(403).send({ message: "you must log in" });
+        return next();
+    }
+} catch (error) {
         return res.status(500).json({ message:'error in fetch' })
     }
 }

@@ -36,7 +36,7 @@ function SingleOne() {
         if (comment) {
             fetch(`${serverAddress}/comment`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({
                     blogid: blog._id,
                     comment
@@ -79,29 +79,29 @@ function SingleOne() {
                                 <Typography variant='h5'>Comments</Typography>
                                 {
                                     blog.Commentaire?.length != 0
-                                    ? <Box sx={{ maxHeight: '200px', overflowY: 'auto' }}>
+                                        ? <Box sx={{ maxHeight: '200px', overflowY: 'auto' }}>
 
-                                    {
-                                        blog.Commentaire?.map((comment, index) => (
-                                            <CardHeader
-                                                key={index}
-                                                avatar={
+                                            {
+                                                blog.Commentaire?.map((comment, index) => (
                                                     <CardHeader
+                                                        key={index}
                                                         avatar={
-                                                            <Avatar aria-label="recipe">
-                                                                {
-                                                                    comment.userid?.FirstName?.slice(0, 1)
+                                                            <CardHeader
+                                                                avatar={
+                                                                    <Avatar aria-label="recipe">
+                                                                        {
+                                                                            comment.userid?.FirstName?.slice(0, 1)
+                                                                        }
+                                                                    </Avatar>
                                                                 }
-                                                            </Avatar>
+                                                                title={`${comment.userid.FirstName} ${comment.userid.LastName}`}
+                                                                subheader={comment.body}
+                                                            />
                                                         }
-                                                        title={`${comment.userid.FirstName} ${comment.userid.LastName}`}
-                                                        subheader={comment.body}
                                                     />
-                                                }
-                                            />
-                                        ))
-                                    }
-                                </Box>:<Typography variant="caption" sx={{color:'orange'}}>there is no comment</Typography>
+                                                ))
+                                            }
+                                        </Box> : <Typography variant="caption" sx={{ color: 'orange' }}>there is no comment</Typography>
                                 }
 
                             </Box>

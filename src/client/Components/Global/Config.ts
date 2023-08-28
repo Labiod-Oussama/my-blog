@@ -9,4 +9,4 @@ const getCookie = (name: string): string | undefined => {
 }
 export const token: string | undefined = getCookie("token");
 export const serverAddress = 'https://my-blogs-eqye.onrender.com';
-// export const serverAddress = 'http://localhost:3001';
+// export const serverAddress = 'http://localhost:3000';

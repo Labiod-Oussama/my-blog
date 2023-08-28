@@ -58,7 +58,8 @@ const Admin = () => {
   const [alert, setAlert] = useState<AlertProps>({ alerting: { type: '', text: '' }, open: false });
   const handleDelete = (id: string) => {
     fetch(`${serverAddress}/deleteBlog/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
     }).then(res => {
       if (res.ok) {
         setBlogs(prev => prev.filter(blog => blog._id != id))

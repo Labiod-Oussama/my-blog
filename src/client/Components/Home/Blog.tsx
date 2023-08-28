@@ -34,7 +34,7 @@ const Blog = (props: propsBlogs) => {
     const handleLike = async (id_Blog: any) => {
         const response = await fetch(`${serverAddress}/like/${id_Blog}`, {
             method: 'post',
-            headers: { "Content-Type": "application/json" }
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         })
         const json = await response.json();
         if (!response.ok && response.status == 403) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import SideBar from './SideBar'
 import { Box, Container, TextField, Paper, Button } from '@mui/material'
 import { ErrorMessage, Form, Formik, FormikValues } from 'formik';
@@ -10,10 +10,12 @@ import Alerte from '../Global/Alerte';
 import { useNavigate } from 'react-router-dom';
 import { infoGlobal } from '../../App';
 const CreateBlog = () => {
+    const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal)
     const navigate = useNavigate()
     useEffect(() => {
         fetch(`${serverAddress}/Dashboad`, {
-            method: 'GET'
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         }).then(res => res.json()).then(data => {
             const { admin } = data
             if (!admin) {
@@ -21,9 +23,7 @@ const CreateBlog = () => {
             }
         })
     }, [])
-    const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal)
-    console.log(UserInfos);
-    
+
     const [blog, setBlog] = useState<propsBlogs>({} as propsBlogs)
     const [alert, setAlert] = useState<AlertProps>({ alerting: { type: '', text: '' }, open: false });
     const initialValues: SignupFormValues = {
@@ -47,7 +47,7 @@ const CreateBlog = () => {
         setSubmitting(false);
         fetch(`${serverAddress}/create`, {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify({
                 Title: values.Title,
                 Image: values.Image,

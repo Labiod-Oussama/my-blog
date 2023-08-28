@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,6 +7,7 @@ import { TextField } from '@mui/material';
 import { valuesEdit } from '../Type/Props';
 import { serverAddress } from '../Global/Config';
 import { useNavigate } from 'react-router-dom';
+import { infoGlobal } from '../../App';
 
 type SetValuesFunction = (updatedValues: {
     _id: string,
@@ -22,15 +23,15 @@ export default function DialogEdit(props: {
     open: boolean,
     handleClickOpen: (e: boolean) => void;
 }) {
+    const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal);
     const navigate = useNavigate()
     const { _id, Title, Image, Description } = props.values
     const handleEdit = (id: string) => {
         if (Image && Title && Description) {
             fetch(`${serverAddress}/EditBlog/${id}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+
                 body: JSON.stringify({
                     Title,
                     Image,

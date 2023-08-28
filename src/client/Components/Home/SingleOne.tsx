@@ -10,10 +10,14 @@ import { serverAddress } from '../Global/Config';
 function SingleOne() {
     const { infos: { token, UserInfos }, setInfos } = useContext(infoGlobal);
     const params = useParams()
-    const blogid = params.blogID || '';
+    const [blogid, setblogid] = useState<string>('')
+    // const blogid = params.blogID || '';
     const navigate = useNavigate()
     const [alert, setAlert] = useState<AlertProps>({ alerting: { type: '', text: '' }, open: false });
     const [blog, setBlog] = useState<propsBlogs>({} as propsBlogs)
+    useEffect(() => {
+        setblogid((params.blogID) as string)
+    }, [params])
     useEffect(() => {
         const getBlog = async () => {
             const { json, ok, status } = await getOneBlog(blogid);

@@ -106,8 +106,8 @@ function Header() {
                                     variant="rounded"
                                     src={photoProfile}
                                     alt='profile_user'
-                                    sx={{ ml: 1, cursor: 'pointer' }}
-                                    onClick={() => setOpen(true)}
+                                    sx={{ ml: 1 }}
+                                    // onClick={() => setOpen(true)}
                                 />
                                 <Button variant='contained' sx={{ marginLeft: '15px', fontWeight: 'bold', bgcolor: 'primary', '&:hover': { bgcolor: 'primary.main' } }} onClick={handleLogOut}>
                                     logout
